@@ -145,8 +145,6 @@ namespace vkc
             foreach (FileInfo loginfile in logins.GetFiles("*.vkl"))
             {
                 ++prefixFilename;
-
-                //loginfile.CopyTo(logins + @"\vkctemp");
                 DirectoryInfo loginsCrypt5 = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\vkctemp");
                 try { loginfile.CopyTo(logins + @"\vkctemp\" + prefixFilename + ".vkl"); }
                 catch
@@ -172,7 +170,7 @@ namespace vkc
                 {
                     Console.WriteLine("Расшифровка сохраненных аккаунтов...");
                     source.Close();
-                    distination.Close(); Thread.Sleep(700); // необходима задержка чтобы виделось >1 .vkl файла ( хз )
+                    distination.Close(); Thread.Sleep(700); // необходима задержка чтобы виделось >1 .vkl файла
                 }
                 Random rand = new Random(); 
                 File.WriteAllBytes(logins + @"\vkctemp\" + rand.Next(1, 999999999) + ".vkld", decode); 
