@@ -15,13 +15,31 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_0E685F082BE1FD370E585B87A3C0F413"
+        "OwnerKey" = "8:_17ADF94C5D1D4F4F8A7AD27814832A78"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0E685F082BE1FD370E585B87A3C0F413"
+        "OwnerKey" = "8:_47296BE29EB95E10AC8C25E8F68B28D0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_17ADF94C5D1D4F4F8A7AD27814832A78"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_29C73F8C0285673B0C67FE253F2720B8"
+        "MsmKey" = "8:_205EA276630888DA5F3672D1244B9AF4"
+        "OwnerKey" = "8:_17ADF94C5D1D4F4F8A7AD27814832A78"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_47296BE29EB95E10AC8C25E8F68B28D0"
         "OwnerKey" = "8:_17ADF94C5D1D4F4F8A7AD27814832A78"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -33,32 +51,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_9205DCAF7AA182E47B67794978516113"
+        "MsmKey" = "8:_9A772A965305BAA1A0FB1D29B433BED5"
         "OwnerKey" = "8:_17ADF94C5D1D4F4F8A7AD27814832A78"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_9205DCAF7AA182E47B67794978516113"
-        "OwnerKey" = "8:_A900064762E7F2A6E2D048EFADB5A448"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_A900064762E7F2A6E2D048EFADB5A448"
-        "OwnerKey" = "8:_17ADF94C5D1D4F4F8A7AD27814832A78"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_C88D03BB56A8C66C20C1BCDEFDA2AAEE"
-        "OwnerKey" = "8:_17ADF94C5D1D4F4F8A7AD27814832A78"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_C88D03BB56A8C66C20C1BCDEFDA2AAEE"
-        "OwnerKey" = "8:_A900064762E7F2A6E2D048EFADB5A448"
+        "MsmKey" = "8:_9A772A965305BAA1A0FB1D29B433BED5"
+        "OwnerKey" = "8:_47296BE29EB95E10AC8C25E8F68B28D0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -70,25 +70,25 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A900064762E7F2A6E2D048EFADB5A448"
+        "OwnerKey" = "8:_47296BE29EB95E10AC8C25E8F68B28D0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C88D03BB56A8C66C20C1BCDEFDA2AAEE"
+        "OwnerKey" = "8:_9A772A965305BAA1A0FB1D29B433BED5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9205DCAF7AA182E47B67794978516113"
+        "OwnerKey" = "8:_0E685F082BE1FD370E585B87A3C0F413"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_29C73F8C0285673B0C67FE253F2720B8"
+        "OwnerKey" = "8:_205EA276630888DA5F3672D1244B9AF4"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -186,20 +186,82 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_29C73F8C0285673B0C67FE253F2720B8"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0E685F082BE1FD370E585B87A3C0F413"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:AngleSharp, Version=0.9.9.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_0E685F082BE1FD370E585B87A3C0F413"
+                    {
+                    "Name" = "8:AngleSharp.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:AngleSharp.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_AC5CF13D836E429B9954DE9701886ED9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_205EA276630888DA5F3672D1244B9AF4"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_29C73F8C0285673B0C67FE253F2720B8"
+                    "_205EA276630888DA5F3672D1244B9AF4"
                     {
                     "Name" = "8:System.Net.Http.dll"
                     "Attributes" = "3:512"
                     }
                 }
             "SourcePath" = "8:System.Net.Http.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_AC5CF13D836E429B9954DE9701886ED9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_47296BE29EB95E10AC8C25E8F68B28D0"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:VkNet, Version=1.21.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_47296BE29EB95E10AC8C25E8F68B28D0"
+                    {
+                    "Name" = "8:VkNet.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:VkNet.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_AC5CF13D836E429B9954DE9701886ED9"
@@ -237,76 +299,14 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9205DCAF7AA182E47B67794978516113"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:AngleSharp, Version=0.9.9.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_9205DCAF7AA182E47B67794978516113"
-                    {
-                    "Name" = "8:AngleSharp.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:AngleSharp.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_AC5CF13D836E429B9954DE9701886ED9"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A900064762E7F2A6E2D048EFADB5A448"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:VkNet, Version=1.21.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_A900064762E7F2A6E2D048EFADB5A448"
-                    {
-                    "Name" = "8:VkNet.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:VkNet.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_AC5CF13D836E429B9954DE9701886ED9"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C88D03BB56A8C66C20C1BCDEFDA2AAEE"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9A772A965305BAA1A0FB1D29B433BED5"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_C88D03BB56A8C66C20C1BCDEFDA2AAEE"
+                    "_9A772A965305BAA1A0FB1D29B433BED5"
                     {
                     "Name" = "8:Newtonsoft.Json.dll"
                     "Attributes" = "3:512"
@@ -386,15 +386,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:VK cmd"
-        "ProductCode" = "8:{D8FA48D6-450B-4778-BB5C-C0DFBDF90C88}"
-        "PackageCode" = "8:{8FC9D2B7-9C14-416D-84AE-CEC1B144B870}"
+        "ProductCode" = "8:{FFA94902-B802-4D1E-B3EE-FD58C5A346EF}"
+        "PackageCode" = "8:{C2C6956E-0482-412C-973C-279B8B431C09}"
         "UpgradeCode" = "8:{36889578-A2E1-4303-883B-6604928FA835}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.3"
+        "ProductVersion" = "8:1.0.4"
         "Manufacturer" = "8:Mikee Solutions"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
