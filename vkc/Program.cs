@@ -65,7 +65,13 @@ namespace vkc
                 }
                 Console.WriteLine();
                 Settings settings = Settings.All;
-                vk.Authorize(appKey, vkLogin, vkPass, settings);
+                vk.Authorize(new ApiAuthParams
+                {
+                    ApplicationId = ulong.Parse(appKey.ToString()),
+                    Login = vkLogin,
+                    Password = vkPass,
+                    Settings = settings
+                });
                 myId = long.Parse(vk.UserId.ToString());
                 Console.Clear();
                 for (int i = 0; i < 10; i++) { Console.WriteLine(); }
@@ -199,7 +205,14 @@ namespace vkc
             Settings settings = Settings.All;
             try
             {
-                vk.Authorize(appKey, vkLogin, vkPass, settings);
+                vk.Authorize(new ApiAuthParams
+                {
+                    ApplicationId = ulong.Parse(appKey.ToString()),
+                    Login = vkLogin,
+                    Password = vkPass,
+                    Settings = settings
+                });
+
             }
             catch { Console.WriteLine("Не удалось подключиться. Возможно, вы сменили пароль. Вы можете сбросить сохраненные аккаунты в настройках");
                 Console.ReadKey(true); Environment.Exit(1);
