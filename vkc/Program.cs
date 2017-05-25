@@ -238,7 +238,7 @@ namespace vkc
 
         private static void Main()
         {
-            Console.Title = "VK cmd";            
+            Console.Title = "VK cmd 1.0.4";            
             Program prog = new Program();
             int foundLogins = 0;
             DirectoryInfo logins = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
@@ -405,32 +405,37 @@ namespace vkc
 
         private string IdToName(long id)
         {
-            
+            try
+            {
+
                 if (cashe.ContainsKey(id)) // сессионное кеширование пар id - имя фамилия
                 {
                     return cashe[id];
                 }
-                if(File.Exists(casheDialogs+@"\"+id.ToString()))
+                if (File.Exists(casheDialogs + @"\" + id.ToString()))
                 {
-                return File.ReadAllText(casheDialogs + @"\" + id.ToString());
+                    return File.ReadAllText(casheDialogs + @"\" + id.ToString());
                 }
-            if (cashe.ContainsKey(id)) // сессионное кеширование пар id - имя фамилия
-            {
-                return cashe[id];
-            }
-            else
-            {
-                try
+                if (cashe.ContainsKey(id)) // сессионное кеширование пар id - имя фамилия
                 {
-                    cashe.Add(id, vk.Users.Get(id).FirstName + " " + vk.Users.Get(id).LastName + " : "); Thread.Sleep(550); // Задержка чтобы вк не ругался
-                    var user = vk.Users.Get(id);
-                    return user.FirstName + " " + user.LastName + " : ";
+                    return cashe[id];
                 }
-                catch {
-                    var user = vk.Users.Get(id);
-                    return user.FirstName + " " + user.LastName + " : ";
+                else
+                {
+                    try
+                    {
+                        cashe.Add(id, vk.Users.Get(id).FirstName + " " + vk.Users.Get(id).LastName + " : "); Thread.Sleep(550); // Задержка чтобы вк не ругался
+                        var user = vk.Users.Get(id);
+                        return user.FirstName + " " + user.LastName + " : ";
+                    }
+                    catch
+                    {
+                        var user = vk.Users.Get(id);
+                        return user.FirstName + " " + user.LastName + " : ";
+                    }
                 }
             }
+            catch  { return "Unknown"; } // возвращает если передаваемый в id long является отрицательным(пользователь был приглашен по e-mail, документация vk)
             
         } // конвертер айди пользака в имя фамилию с кешированием
 
@@ -747,11 +752,14 @@ namespace vkc
             });
             foreach (var dialog in dialogs.Messages)
             {
-                long tempId = long.Parse(dialog.UserId.ToString());
-                if (tempId < 1) { continue; }
-                if (cashe.ContainsKey(long.Parse(dialog.UserId.ToString()))) { continue; }
-                if(File.Exists(casheDialogs+@"\"+ dialog.UserId.ToString())) { continue; }
-                File.WriteAllText(casheDialogs +@"\"+ dialog.UserId, IdToName(long.Parse(dialog.UserId.ToString())));
+                try
+                {
+                    long tempId = long.Parse(dialog.UserId.ToString());
+                    if (cashe.ContainsKey(long.Parse(dialog.UserId.ToString()))) { continue; }
+                    if (File.Exists(casheDialogs + @"\" + dialog.UserId.ToString())) { continue; }
+                    File.WriteAllText(casheDialogs + @"\" + dialog.UserId, IdToName(long.Parse(dialog.UserId.ToString())));
+                }
+                catch (System.ArgumentException e) { }
             }
             File.Create(casheDialogs + @"\done.check"); // файл говорящий что не нужно производить полное перекеширование
         }
