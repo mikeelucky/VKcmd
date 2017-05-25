@@ -734,6 +734,8 @@ namespace vkc
             });
             foreach (var dialog in dialogs.Messages)
             {
+                long tempId = long.Parse(dialog.UserId.ToString());
+                if (tempId < 1) { continue; }
                 if (cashe.ContainsKey(long.Parse(dialog.UserId.ToString()))) { continue; }
                 if(File.Exists(casheDialogs+@"\"+ dialog.UserId.ToString())) { continue; }
                 File.WriteAllText(casheDialogs +@"\"+ dialog.UserId, IdToName(long.Parse(dialog.UserId.ToString())));
