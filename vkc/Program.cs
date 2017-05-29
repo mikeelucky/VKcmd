@@ -18,15 +18,15 @@ namespace vkc
         VkApi vk = new VkApi();
 #region misc
         List<string> listFriends = new List<string>();
-        Dictionary<long, string> cashe = new Dictionary<long, string>();
-        static int soundcound = 0;
-        static long tomessage;
+        Dictionary<long, string> cache = new Dictionary<long, string>();
+        static int soundCount = 0;
+        static long toMessage;
         static int countNewMessage = 0;
         static int appKey = 5807051;
         static string vkPass;
         static string vkLogin;
         static long myId;
-        static string casheDialogs = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Vkc";
+        static string cacheDialogs = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Vkc";
 #endregion
 
         private void VkIn()
@@ -79,9 +79,9 @@ namespace vkc
                 ThreadStart titleUpdate = new ThreadStart(Alerts); // запуск второго потока для обновления шапки
                 Thread titleUnreadMessage = new Thread(titleUpdate);
                 titleUnreadMessage.Start();
-                ThreadStart dialogcashing = new ThreadStart(CashingDialogs); // запуск потока для кеширования пар id - имя-фамилия
-                Thread cashingdialog = new Thread(dialogcashing);
-                cashingdialog.Start();
+                ThreadStart dialogcaching = new ThreadStart(CachingDialogs); // запуск потока для кеширования пар id - имя-фамилия
+                Thread cachingdialog = new Thread(dialogcaching);
+                cachingdialog.Start();
                 sw:
                 Console.WriteLine("Сохранить этот аккаунт для быстрого входа? ( y или n ) ( Все Ваши данные шифруются )");
                 string saveOrNot = Console.ReadLine();
@@ -221,9 +221,9 @@ namespace vkc
             Console.Clear();
             for (int i = 0; i < 10; i++) { Console.WriteLine(); }
             Console.WriteLine("Авторизация успешна.");
-            ThreadStart dialogcashing = new ThreadStart(CashingDialogs); // запуск потока для кеширования пар id - имя-фамилия
-            Thread cashingdialog = new Thread(dialogcashing);
-            cashingdialog.Start();
+            ThreadStart dialogcaching = new ThreadStart(CachingDialogs); // запуск потока для кеширования пар id - имя-фамилия
+            Thread cachingdialog = new Thread(dialogcaching);
+            cachingdialog.Start();
             foreach (FileInfo loginfile in loginsCrypt.GetFiles("*"))
             {
                 loginfile.Delete();
@@ -374,11 +374,11 @@ namespace vkc
                 });
                 if (getDialogs.Messages.Count > 0)
                 {
-                    if (soundcound == 0)
+                    if (soundCount == 0)
                     {
-                        if (!File.Exists(casheDialogs + @"\sound.off"))
+                        if (!File.Exists(cacheDialogs + @"\sound.off"))
                         {
-                            soundcound = 1;
+                            soundCount = 1;
                             SoundPlayer sp = new SoundPlayer(@"c:\Windows\Media\Windows Notify.wav");
                             sp.Play();
                             Thread.Sleep(1000);
@@ -389,14 +389,14 @@ namespace vkc
                     {
                         countNewMessage += line.Unread;
                         Console.Title = "VK cmd Диалогов с новыми сообщениями : " + getDialogs.Messages.Count.ToString() + " ***"+IdToName(long.Parse(line.UserId.ToString()))+ line.Body + "   ***";
-                        tomessage = long.Parse(line.UserId.ToString());
+                        toMessage = long.Parse(line.UserId.ToString());
                         Thread.Sleep(1000);
                     }
                 }
                 else
                 {
                     Console.Title = "VK cmd   Новых сообщений нет";
-                    soundcound = 0;
+                    soundCount = 0;
 
                 }
                 Thread.Sleep(3000);
@@ -408,23 +408,23 @@ namespace vkc
             try
             {
 
-                if (cashe.ContainsKey(id)) // сессионное кеширование пар id - имя фамилия
+                if (cache.ContainsKey(id)) // сессионное кеширование пар id - имя фамилия
                 {
-                    return cashe[id];
+                    return cache[id];
                 }
-                if (File.Exists(casheDialogs + @"\" + id.ToString()))
+                if (File.Exists(cacheDialogs + @"\" + id.ToString()))
                 {
-                    return File.ReadAllText(casheDialogs + @"\" + id.ToString());
+                    return File.ReadAllText(cacheDialogs + @"\" + id.ToString());
                 }
-                if (cashe.ContainsKey(id)) // сессионное кеширование пар id - имя фамилия
+                if (cache.ContainsKey(id)) // сессионное кеширование пар id - имя фамилия
                 {
-                    return cashe[id];
+                    return cache[id];
                 }
                 else
                 {
                     try
                     {
-                        cashe.Add(id, vk.Users.Get(id).FirstName + " " + vk.Users.Get(id).LastName + " : "); Thread.Sleep(550); // Задержка чтобы вк не ругался
+                        cache.Add(id, vk.Users.Get(id).FirstName + " " + vk.Users.Get(id).LastName + " : "); Thread.Sleep(550); // Задержка чтобы вк не ругался
                         var user = vk.Users.Get(id);
                         return user.FirstName + " " + user.LastName + " : ";
                     }
@@ -454,9 +454,19 @@ namespace vkc
                 var reverseMessage = history.Messages.Reverse();
                 foreach (var message in reverseMessage)
                 {
+                    string readed = message.ReadState.ToString();
+                    if (readed == "Readed") { readed = ""; }
+                    if(readed=="Unreaded") { readed = "*"; }
                     long ids = (long)message.FromId;
-                    Console.WriteLine(message.Date.ToString()+" "+ IdToName(ids) + message.Body);
+                    Console.WriteLine(message.Date.ToString() + " " + IdToName(ids) + message.Body + " " + readed);
                 }
+
+                string onlineToCmd;
+                var thisUserOnline = vk.Users.Get(userid,ProfileFields.Online);
+                bool onlineOrNot = bool.Parse(thisUserOnline.Online.ToString());
+                if (onlineOrNot) { onlineToCmd = IdToName(userid) + " ***On-line***"; } else { onlineToCmd = ""; }
+                Console.WriteLine(onlineToCmd);
+
                 Thread historyclean = new Thread(delegate () { HistoryCleaner(history.Messages); }); // создание потока на пометку сообщений прочитанными
                 historyclean.Start();
                 Console.WriteLine();
@@ -504,7 +514,7 @@ namespace vkc
 
         private void Messages()
         {
-            if (!File.Exists(casheDialogs + @"\done.check")) { Console.WriteLine("Подождите, кэширование диалогов еще не завершенно."); Console.WriteLine("Эта единократная операция занимает около 3-5 минут и значительно ускоряет работу всей программы."); MainMenu(); }
+            if (!File.Exists(cacheDialogs + @"\done.check")) { Console.WriteLine("Подождите, кэширование диалогов еще не завершенно."); Console.WriteLine("Эта единократная операция занимает около 3-5 минут и значительно ускоряет работу всей программы."); MainMenu(); }
 
 
             
@@ -521,7 +531,10 @@ namespace vkc
             foreach (var dialog in dialogReverse)
             {
                 --dialogCount;
-                Console.WriteLine(dialogCount+ " " + IdToName(long.Parse(dialog.UserId.ToString())) + " " + dialog.Body);
+                string readed = dialog.ReadState.ToString();
+                if (readed == "Readed") { readed = ""; }
+                if (readed == "Unreaded") { readed = "*"; }
+                Console.WriteLine(dialogCount+ " " + IdToName(long.Parse(dialog.UserId.ToString())) + " " + dialog.Body + " " + readed);
                 myDialogs.Add(dialogCount, long.Parse(dialog.UserId.ToString()));
             }
             Console.WriteLine("Выберите диалог или 0 чтобы выйти :");
@@ -551,7 +564,7 @@ namespace vkc
 
             if (newQuickDialog1.TotalCount != 0)
             {
-                soundcound = 1;
+                soundCount = 1;
                 Dictionary<int, long> newDialogs = new Dictionary<int, long>();
                 int countNewDialogs = 0;
                 var newQuickDialog = vk.Messages.GetDialogs(new MessagesDialogsGetParams
@@ -691,18 +704,18 @@ namespace vkc
             switch (choosedSettings)
             {
                 case "/soundon":
-                    if (File.Exists(casheDialogs + @"\sound.off"))
+                    if (File.Exists(cacheDialogs + @"\sound.off"))
                     {
-                        File.Delete(casheDialogs + @"\sound.off");
+                        File.Delete(cacheDialogs + @"\sound.off");
                     }
                     Console.WriteLine("Звук включен");
                     break;
                         
 
                 case "/soundoff":
-                    if(!File.Exists(casheDialogs+@"\sound.off"))
+                    if(!File.Exists(cacheDialogs+@"\sound.off"))
                     {
-                        File.Create(casheDialogs + @"\sound.off");
+                        File.Create(cacheDialogs + @"\sound.off");
                     }
                     Console.WriteLine("Звук выключен");
                     VKCSettings();
@@ -741,9 +754,9 @@ namespace vkc
             Console.WriteLine("Больше файлов нет.");
         } // удаляет сохраненные аккаунты
 
-        private void CashingDialogs() // кеширует пары id - имя-фио для списка диалогов
+        private void CachingDialogs() // кеширует пары id - имя-фио для списка диалогов
         {
-            if (!Directory.Exists(casheDialogs)) { Directory.CreateDirectory(casheDialogs);}
+            if (!Directory.Exists(cacheDialogs)) { Directory.CreateDirectory(cacheDialogs);}
             
             var dialogs = vk.Messages.GetDialogs(new MessagesDialogsGetParams
             {
@@ -755,13 +768,13 @@ namespace vkc
                 try
                 {
                     long tempId = long.Parse(dialog.UserId.ToString());
-                    if (cashe.ContainsKey(long.Parse(dialog.UserId.ToString()))) { continue; }
-                    if (File.Exists(casheDialogs + @"\" + dialog.UserId.ToString())) { continue; }
-                    File.WriteAllText(casheDialogs + @"\" + dialog.UserId, IdToName(long.Parse(dialog.UserId.ToString())));
+                    if (cache.ContainsKey(long.Parse(dialog.UserId.ToString()))) { continue; }
+                    if (File.Exists(cacheDialogs + @"\" + dialog.UserId.ToString())) { continue; }
+                    File.WriteAllText(cacheDialogs + @"\" + dialog.UserId, IdToName(long.Parse(dialog.UserId.ToString())));
                 }
                 catch (System.ArgumentException e) { }
             }
-            File.Create(casheDialogs + @"\done.check"); // файл говорящий что не нужно производить полное перекеширование
+            File.Create(cacheDialogs + @"\done.check"); // файл говорящий что не нужно производить полное перекеширование
         }
     }
 }
