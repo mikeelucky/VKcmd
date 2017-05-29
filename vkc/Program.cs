@@ -238,7 +238,7 @@ namespace vkc
 
         private static void Main()
         {
-            Console.Title = "VK cmd 1.0.4";            
+            Console.Title = "VK cmd 1.0.5";            
             Program prog = new Program();
             int foundLogins = 0;
             DirectoryInfo logins = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
